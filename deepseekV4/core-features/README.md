@@ -1,3 +1,6 @@
 # 核心特性复现
 
-本目录用于复现 DeepSeekV4 Pro / V4.1 Flash 的部分核心特性，按特性逐步添加实现、实验与验证记录。
+模型实现与核心特性复现现按版本组织：
+
+- [DeepSeek V4 Pro](../v4-pro/)
+- [DeepSeek V4.1 Flash](../v4.1-flash/)
