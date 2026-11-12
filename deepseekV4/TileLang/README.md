@@ -34,4 +34,8 @@
 
 看完这些内容后，结合已有的 Ascend 编程基础，我基本理解了如何使用 TileLang 编写 Ascend 算子；后续再通过实际复现加深理解。
 
+- 向内追问： 我 22 年参与过类似 TileLang 的AI编译器研发(百度paddle 研发的 [CINN](https://github.com/PaddlePaddle/CINN)) 。 参考开山祖师 TVM 的方法、以 MLIR 这种 IR 体系为脚手架，实现一套用 python 快速注册算子的编译器、再通过 IR 逐层转换内部自动实现性能调优。  后续在 国产AI芯片公司实际感觉AI编译器很难落地，因为类似 TVM、Triton 这种AI编译器产出的算子性能上限低、比人为手写的低很多，只落下个方便了。             在对TileLang 的使用中，我感觉他和其他的AI编译器还是比较类似。 但他对Ascend 的适配的确更精细一些：特别是内存源语感觉到有对华为的达芬奇架构特殊适配、VID 等 针对 CV配比、CV 分离等场景的适配方案明显是 AscendNPU 上特有的需求场景。
+- 一句话总结下： DeepSeek 用了 Ascend 芯片后可能想自己快速写算子，为更高的开发效率引入了TileLang
+
+
 参考：[TileLang-Ascend 编程指南](https://github.com/tile-ai/tilelang-ascend/blob/ascendc_pto/docs/TileLang-Ascend%20Programming%20Guide.md)、[TileLang-Ascend](https://github.com/tile-ai/tilelang-ascend)、[DeepSeek TileKernels](https://github.com/deepseek-ai/TileKernels)。
