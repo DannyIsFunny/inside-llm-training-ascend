@@ -12,39 +12,27 @@
 
 ### 内存分配原语
 
-| 原语 | 对应图中的存储 |
-| --- | --- |
-| `T.alloc_shared` | Shared 抽象层，对应 L1 Buffer 或 Unified Buffer（UB），由上下文确定 |
-| `T.alloc_fragment` | Fragment 抽象层，对应 L0A、L0B、L0C |
-| `T.alloc_ub`、`T.alloc_L1` | 显式分配 UB、L1 |
-| `T.alloc_L0A`、`T.alloc_L0B`、`T.alloc_L0C` | 显式分配 L0A、L0B、L0C |
-| `T.alloc_var` | 分配标量变量 |
+- `T.alloc_shared` : Shared 抽象层，对应 L1 Buffer 或 Unified Buffer（UB），由上下文确定
+- `T.alloc_fragment` : Fragment 抽象层，对应 L0A、L0B、L0C
+- `T.alloc_ub`、`T.alloc_L1` : 显式分配 UB、L1 
+- `T.alloc_L0A`、`T.alloc_L0B`、`T.alloc_L0C` : 显式分配 L0A、L0B、L0C
+- `T.alloc_var` : 分配标量变量
 
 ### 数据搬运原语
 
-`T.copy(src, dst)` 指定源和目标，支持 GM → L1、L1 → L0A/L0B、L0C → GM、GM ↔ UB、UB → UB、UB → L1 等搬运路径。GM 对应图中的 Global Memory。
+- `T.copy(src, dst)` 指定源和目标:支持 GM → L1、L1 → L0A/L0B、L0C → GM、GM ↔ UB、UB → UB、UB → L1 等搬运路径。GM 对应图中的 Global Memory。
 
 ### 计算原语
 
-#### 矩阵计算
+-  矩阵计算: `T.gemm_v0`
 
-`T.gemm_v0`
+- Reduce: `T.reduce_sum`、`T.reduce_max`、`T.reduce_min`
 
-#### Reduce
+- Broadcast: `T.tile.broadcast`
 
-`T.reduce_sum`、`T.reduce_max`、`T.reduce_min`
+- 逐元素计算: `+`、`-`、`*`、`/`、`T.abs`、`T.exp`、`T.log`、`T.sqrt`、`T.rsqrt`、`T.min`、`T.max`
 
-#### Broadcast
-
-`T.tile.broadcast`
-
-#### 逐元素计算
-
-`+`、`-`、`*`、`/`、`T.abs`、`T.exp`、`T.log`、`T.sqrt`、`T.rsqrt`、`T.min`、`T.max`
-
-### 调度原语
-
-`T.Parallel`、`T.Pipelined`、`T.Persistent`
+- 调度原语: `T.Parallel`、`T.Pipelined`、`T.Persistent`
 
 看完这些内容后，结合已有的 Ascend 编程基础，我基本理解了如何使用 TileLang 编写 Ascend 算子；后续再通过实际复现加深理解。
 
