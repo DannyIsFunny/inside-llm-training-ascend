@@ -60,7 +60,7 @@ def tile_add(M: int, N: int, block_M: int, block_N: int, dtype: str = 'float'):
             c_ub = T.alloc_shared((block_M // VEC_NUM, block_N), dtype)
             # 计算步骤2：讲输入 按块拷贝 待到 UB
             #        Comment From DannyIsFunny: 
-            #            这里也是 TileLang 的一个易用点，我不需要指定从哪里拷贝到哪里，不需要指定使用的具体的MTE
+            #            T.copy 需要指定源和目标，但不需要手动指定使用的具体 MTE
             T.copy(A[bx * block_M + vid * block_M // VEC_NUM, by * block_N], a_ub)
             T.copy(B[bx * block_M + vid * block_M // VEC_NUM, by * block_N], b_ub)
             # 计算步骤3. 并行调用VECTOR执行加法计算
@@ -86,7 +86,7 @@ print("init successful!")
 #  3. 调用算子做加法
 c = func(a, b)
 ref_c = a + b
-# 4. 验证精度： 看 CPU 算出的加法和 NPU 算出的加法结果是否一致
+# 4. 验证精度：比较 TileLang 和 PyTorch 在 NPU 上计算的加法结果
 torch.testing.assert_close(c, ref_c, rtol=1e-2, atol=1e-2)
 print("Kernel Output Match!")
 
