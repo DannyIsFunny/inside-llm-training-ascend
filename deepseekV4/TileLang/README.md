@@ -28,7 +28,7 @@
 - Reduce: `T.reduce_sum`、`T.reduce_max`、`T.reduce_min`
 - Broadcast: `T.tile.broadcast`
 - 逐元素计算: `+`、`-`、`*`、`/`、`T.abs`、`T.exp`、`T.log`、`T.sqrt`、`T.rsqrt`、`T.min`、`T.max`
-- 调度原语: `T.Parallel`、`T.Pipelined`、`T.Persistent`
+- 调度原语: `T.Parallel`、`T.Pipelined`、`T.Persistent`（[简要说明与示意图](scheduling.md)）
 
 ## 总结
 
