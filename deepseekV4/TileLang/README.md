@@ -25,13 +25,9 @@
 ### 计算原语
 
 -  矩阵计算: `T.gemm_v0`
-
 - Reduce: `T.reduce_sum`、`T.reduce_max`、`T.reduce_min`
-
 - Broadcast: `T.tile.broadcast`
-
 - 逐元素计算: `+`、`-`、`*`、`/`、`T.abs`、`T.exp`、`T.log`、`T.sqrt`、`T.rsqrt`、`T.min`、`T.max`
-
 - 调度原语: `T.Parallel`、`T.Pipelined`、`T.Persistent`
 
 ## 总结
